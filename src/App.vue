@@ -8,9 +8,8 @@ const router = useRouter()
 const userStore = useUserStore()
 
 router.beforeEach((to, from, next) => {
-  if (to.meta?.access === 'canAdmin') {
-    console.log('---')
-    if (userStore.userInfo.role !== 'admin') {
+  if (to.meta?.access === 'admin') {
+    if (userStore.userInfo.userRole !== 'admin') {
       next('/NotAuth')
       return
     }

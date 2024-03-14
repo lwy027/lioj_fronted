@@ -3,7 +3,22 @@ import { useRouter } from 'vue-router'
 import routes from '../router/routes.ts'
 import { ref } from 'vue'
 
+import checkAccess from '@/utils/CheckAccess.ts'
+import { useUserStore } from '@/stores/user.ts'
+
 const router = useRouter()
+const userStore = useUserStore()
+
+const visibleRoutes = routes.filter((item) => {
+  if (item.meta?.hideInMenu) {
+    return false
+  }
+  //根据权限过滤菜单
+  if (!checkAccess(userStore.userInfo, item.meta?.access)) {
+    return false
+  }
+  return true
+})
 
 let curKey = ref(['/'])
 
@@ -16,7 +31,7 @@ const doMenuClick = (key) => {
   <div class="home">
     <a-menu mode="horizontal" :default-selected-keys="curKey" @menu-item-click="doMenuClick">
       <a-menu-item key="0" :style="{ padding: 0, marginRight: '38px' }"> </a-menu-item>
-      <a-menu-item v-for="item in routes" :key="item.path">{{ item.name }} </a-menu-item>
+      <a-menu-item v-for="item in visibleRoutes" :key="item.path">{{ item.name }} </a-menu-item>
     </a-menu>
   </div>
 </template>

@@ -16,12 +16,16 @@ const routes = [
     name: 'admin',
     component: () => import('../views/Admin.vue'),
     meta: {
-      access: 'canAdmin'
+      access: 'admin'
     }
   },
   {
     path: '/NotAuth',
-    component: () => import('../views/NotAuth.vue')
+    name: 'NotAuth',
+    component: () => import('../views/NotAuth.vue'),
+    meta: {
+      hideInMenu: true
+    }
   }
 ]
 
