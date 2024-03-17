@@ -1,0 +1,6 @@
+/* 全局message提示样式 */
+.arco-overlay-message {
+  position: absolute;
+  top: 10%;
+  left: 46%;
+}

@@ -5,6 +5,7 @@ import { ref } from 'vue'
 
 import checkAccess from '@/utils/CheckAccess.ts'
 import { useUserStore } from '@/stores/user.ts'
+import userInfo from './userInfo.vue'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -28,12 +29,19 @@ const doMenuClick = (key) => {
 </script>
 
 <template>
-  <div class="home">
+  <div class="header">
     <a-menu mode="horizontal" :default-selected-keys="curKey" @menu-item-click="doMenuClick">
       <a-menu-item key="0" :style="{ padding: 0, marginRight: '38px' }"> </a-menu-item>
       <a-menu-item v-for="item in visibleRoutes" :key="item.path">{{ item.name }} </a-menu-item>
     </a-menu>
+    <userInfo />
   </div>
 </template>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.header {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+</style>

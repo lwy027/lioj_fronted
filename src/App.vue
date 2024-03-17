@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import Baselayouts from './components/Baselayouts.vue'
 import { useUserStore } from './stores/user'
 import { onMounted } from 'vue'
+import WYrequest from './service/requests'
 
 const router = useRouter()
-
+const route = useRoute()
 const userStore = useUserStore()
 
 router.beforeEach((to, from, next) => {
@@ -30,8 +31,13 @@ onMounted(() => {
 
 <template>
   <div class="wrapper">
-    <Baselayouts />
+    <template v-if="route.path.startsWith('/user')">
+      <RouterView />
+    </template>
+    <template v-else>
+      <Baselayouts />
+    </template>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped style="less"></style>

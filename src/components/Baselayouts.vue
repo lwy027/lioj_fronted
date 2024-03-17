@@ -1,10 +1,13 @@
 <script setup>
+import { useRouter } from 'vue-router'
 import GlobelHader from './GlobleHeader.vue'
+
+const router = useRouter()
 </script>
 
 <template>
   <div class="baseLayout">
-    <a-layout style="height: 400px">
+    <a-layout style="height: 600px">
       <a-layout-header class="header">
         <GlobelHader />
       </a-layout-header>
@@ -18,10 +21,9 @@ import GlobelHader from './GlobleHeader.vue'
 
 <style lang="less" scoped>
 .baseLayout {
-  margin-left: 50px;
-
+  margin-left: 10px;
   .header {
-    margin-bottom: 20px;
+    margin-bottom: 7px;
   }
   .content {
     background-color: #dcd9d4;
