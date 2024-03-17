@@ -2,6 +2,7 @@
 import { useRouter } from 'vue-router'
 import Baselayouts from './components/Baselayouts.vue'
 import { useUserStore } from './stores/user'
+import { onMounted } from 'vue'
 
 const router = useRouter()
 
@@ -15,6 +16,15 @@ router.beforeEach((to, from, next) => {
     }
   }
   next()
+})
+
+//全局初始化调用
+const oninit = () => {
+  console.log('欢迎来到我的项目')
+}
+
+onMounted(() => {
+  oninit()
 })
 </script>
 
