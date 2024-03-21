@@ -3,7 +3,6 @@ import { useRoute, useRouter } from 'vue-router'
 import Baselayouts from './components/Baselayouts.vue'
 import { useUserStore } from './stores/user'
 import { onMounted } from 'vue'
-import WYrequest from './service/requests'
 
 const router = useRouter()
 const route = useRoute()

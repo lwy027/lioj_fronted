@@ -1,8 +1,5 @@
 <script setup>
-import { useRouter } from 'vue-router'
 import GlobelHader from './GlobleHeader.vue'
-
-const router = useRouter()
 </script>
 
 <template>
@@ -26,14 +23,7 @@ const router = useRouter()
     margin-bottom: 7px;
   }
   .content {
-    background-color: #dcd9d4;
-    background-image: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0.5) 0%,
-        rgba(0, 0, 0, 0.5) 100%
-      ),
-      radial-gradient(at 50% 0%, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.5) 50%);
-    background-blend-mode: soft-light, screen;
+    background: linear-gradient(to right, rgb(197, 157, 25), #068c7c);
   }
 
   .footer {

@@ -1,8 +1,5 @@
 <script setup>
-import { useRouter } from 'vue-router'
 import Login from '../views/login/index'
-
-const router = useRouter()
 </script>
 
 <template>

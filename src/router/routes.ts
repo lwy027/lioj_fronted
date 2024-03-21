@@ -4,13 +4,16 @@ import HomeView from '../views/home/index.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'home',
+    name: '首页',
     component: HomeView
   },
   {
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/about/index.vue')
+    path: '/onlineDoQuestion',
+    name: '在线做题',
+    component: () => import('../views/OnlineQuestion/index.vue'),
+    meta: {
+      hideInMenu: true
+    }
   },
   {
     path: '/admin',
