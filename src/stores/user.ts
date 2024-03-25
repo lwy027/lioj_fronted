@@ -5,12 +5,13 @@ import { loginRequest, registerRequest } from '@/service/login'
 import { localCache } from '@/utils/catch'
 import type { IUserInfo } from '../types/index'
 import { USERINFO } from '@/global/constant'
+import ACCESS_ENUM from '@/access/AccessMenu'
 export const useUserStore = defineStore('user', () => {
   const info = localCache.getCache(USERINFO)
 
   const userInfo: IUserInfo = reactive({
     userName: info?.userName,
-    userRole: info?.userRole === 1 ? 'admin' : 'user',
+    userRole: info?.userRole === 1 ? ACCESS_ENUM.ADMIN : ACCESS_ENUM.USER,
     userAvotor: info?.userAvotor,
     id: info?.id
   })

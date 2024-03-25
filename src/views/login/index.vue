@@ -36,12 +36,13 @@ const loginHandle = async () => {
     localCache.setCache(LOGIN_TOKEN, res.data.accessToken)
 
     router.push({
-      path: '/home',
+      path: '/',
       replace: true
     })
     setTimeout(() => {
       window.location.reload()
-    })
+    }, 100)
+
     Message.success('登录成功')
   } else {
     Message.error(errorResponse(res))

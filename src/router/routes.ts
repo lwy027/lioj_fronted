@@ -4,7 +4,7 @@ import HomeView from '../views/home/index.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: '首页',
+    name: '题目列表',
     component: HomeView
   },
   {

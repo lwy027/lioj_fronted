@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AAlert: typeof import('@arco-design/web-vue')['Alert']
     AAvatar: typeof import('@arco-design/web-vue')['Avatar']
     AButton: typeof import('@arco-design/web-vue')['Button']
     ACheckbox: typeof import('@arco-design/web-vue')['Checkbox']
@@ -29,6 +30,7 @@ declare module 'vue' {
     ATag: typeof import('@arco-design/web-vue')['Tag']
     Baselayouts: typeof import('./src/components/Baselayouts.vue')['default']
     copy: typeof import('./src/components/Baselayouts copy.vue')['default']
+    EditView: typeof import('./src/components/EditView.vue')['default']
     GlobleHeader: typeof import('./src/components/GlobleHeader.vue')['default']
     QueryForm: typeof import('./src/components/QueryForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

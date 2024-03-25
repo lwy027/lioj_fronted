@@ -3,6 +3,7 @@ import { useRoute, useRouter } from 'vue-router'
 import Baselayouts from './components/Baselayouts.vue'
 import { useUserStore } from './stores/user'
 import { onMounted } from 'vue'
+import EditView from './components/EditView.vue'
 
 const router = useRouter()
 const route = useRoute()

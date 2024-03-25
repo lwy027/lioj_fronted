@@ -25,7 +25,6 @@ let curKey = ref(['/'])
 
 const doMenuClick = (key) => {
   router.push(key)
-  curKey.value = key
 }
 </script>
 

@@ -28,7 +28,7 @@ export type judgeInfo = {
   SystemError: '系统错误' //做系统人的问题
 }
 
-interface Question {
+export interface Question {
   id: number
 
   title: string
@@ -39,15 +39,15 @@ interface Question {
 
   answer: string
 
-  submitNum: number
+  submitNum?: number
 
-  acceptNum: number
+  acceptNum?: number
 
-  judgeCase: Array<judgeCase>
+  judgeCase?: Array<judgeCase>
 
-  judgeConfig: JudgeConfig
+  judgeConfig?: JudgeConfig
 
-  thumbNum: number
+  thumbNum?: number
 
   favourNum?: number
 

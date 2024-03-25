@@ -8,6 +8,7 @@ import type { IQuestionQuery } from '@/types'
 const questionStore = useQuestionStore()
 
 const { questionList } = storeToRefs(questionStore)
+
 //获取问题列表
 
 let questionQuery = reactive<IQuestionQuery>({})
@@ -21,9 +22,12 @@ onMounted(async () => {
 })
 
 //更改值的状态
-
 const questionQueryHandle = async (value: IQuestionQuery) => {
   questionQuery = value
+  await fetchQuestionListData()
+}
+//子组件发出事件，父组件重新拿取数据
+const reFetchQuestionList = async () => {
   await fetchQuestionListData()
 }
 </script>
@@ -32,7 +36,7 @@ const questionQueryHandle = async (value: IQuestionQuery) => {
     <!-- 查询表单 -->
     <QueryForm @question-query="questionQueryHandle" />
     <!-- 题目展示 -->
-    <TableView :question-list="questionList" />
+    <TableView :question-list="questionList" @re-fetch-question-list="reFetchQuestionList" />
   </div>
 </template>
 

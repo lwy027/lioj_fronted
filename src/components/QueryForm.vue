@@ -17,7 +17,6 @@ const emits = defineEmits(['questionQuery'])
 const handleSubmit = () => {
   //传递给父组件，由父组件进行查询查询操作
   emits('questionQuery', questionQuery)
-  console.log(questionQuery)
 }
 
 //重返事件
@@ -39,12 +38,12 @@ const resetHandle = () => {
         </a-col>
         <a-col :span="6">
           <a-form-item field="title" label="标题">
-            <a-input v-model="questionQuery.title" placeholder="请输入标题" />
+            <a-input v-model="questionQuery.title" placeholder="请输入题目标题" />
           </a-form-item>
         </a-col>
         <a-col :span="6">
           <a-form-item field="tags" label="标签">
-            <a-input v-model="questionQuery.tags" placeholder="请输入标签" />
+            <a-input v-model="questionQuery.tags" placeholder="请输入题目标签" />
           </a-form-item>
         </a-col>
         <a-col :span="6">

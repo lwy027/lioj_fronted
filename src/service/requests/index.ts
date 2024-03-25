@@ -76,6 +76,9 @@ class WyRequest {
   patch<T = any>(config: WyAxiosRequestConfig<T>) {
     return this.request({ ...config, method: 'PATCH' })
   }
+  put<T = any>(config: WyAxiosRequestConfig<T>) {
+    return this.request({ ...config, method: 'PUT' })
+  }
 }
 
 const WYrequest = new WyRequest({
