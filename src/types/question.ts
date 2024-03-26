@@ -30,7 +30,7 @@ export type judgeInfo = {
 
 export interface Question {
   id: number
-
+  userId: number
   title: string
 
   content: string

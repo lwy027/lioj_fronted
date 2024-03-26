@@ -1,5 +1,6 @@
 import type { Question } from '@/types'
 import WYrequest from '../requests'
+
 //获取问题
 export function getQuestionRequest(
   pageNo?: number,
@@ -49,6 +50,21 @@ export function deleteQuestion(questionid: number) {
     url: '/question/delete',
     params: {
       id: questionid
+    }
+  })
+}
+//创建题目
+export function addQuestion(questioninfo: Question) {
+  return WYrequest.post({
+    url: '/question/add',
+    data: {
+      userId: questioninfo.userId,
+      title: questioninfo.title,
+      content: questioninfo.content,
+      tags: questioninfo.tags,
+      answer: questioninfo.answer,
+      judgeCase: questioninfo.judgeCase,
+      judgeConfig: questioninfo.judgeConfig
     }
   })
 }

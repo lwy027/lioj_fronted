@@ -1,4 +1,4 @@
-import { getQuestionRequest, updateQuestion, deleteQuestion } from '@/service/question'
+import { getQuestionRequest, updateQuestion, deleteQuestion, addQuestion } from '@/service/question'
 import type { Question, QuestionListVo } from '@/types'
 import { defineStore } from 'pinia'
 import { reactive } from 'vue'
@@ -45,11 +45,21 @@ export const useQuestionStore = defineStore('question', () => {
       Message.error('删除题目失败')
     }
   }
+  const createQuestion = async (questionInfo: Question) => {
+    const res = await addQuestion(questionInfo)
+    console.log(res)
+    if (res.code === 1) {
+      Message.success('创建题目成功')
+    } else {
+      Message.error('创建题目失败')
+    }
+  }
 
   return {
     questionList,
     fetchQuestionList,
     updateQuestionById,
-    deleteQuestionById
+    deleteQuestionById,
+    createQuestion
   }
 })

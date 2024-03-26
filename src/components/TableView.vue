@@ -15,7 +15,11 @@ const editIsShow = ref<boolean>(false)
 //记录删除题目的id
 const quesId = ref<number>(0)
 
+//控制提示信息展示
 const isShow = ref(false)
+
+//控制当前editView功能是创建还是更新，用来发送不同的网络请求
+const isCreate = ref<boolean>(false)
 
 //使用userStore获取用户当前的身份，进行权限控制
 const userStore = useUserStore()
@@ -29,6 +33,7 @@ const propos = defineProps<{
 
 let editQuestionList: Question = reactive({
   id: 0,
+  userId: 0,
   title: '',
   content: '',
   tags: '',
@@ -43,7 +48,8 @@ let editQuestionList: Question = reactive({
     //时间限制
     timeLimit: 0,
     //内存限制
-    memoryLimit: 0
+    memoryLimit: 0,
+    stackLimit: 0
   }
 })
 
@@ -81,10 +87,18 @@ const editHandler = (record: Question) => {
   editIsShow.value = true
 }
 
-//处理编辑题目信息之后的操作
+//处理编辑/创建题目信息之后的操作
 const editInfoHandler = async (form: Question) => {
-  //发送网络请求,更新题目信息,并且关闭当前页面
-  await questionStore.updateQuestionById(form)
+  console.log(form)
+
+  //当前是更新表单发送的网络请求
+  if (!isCreate.value) {
+    //发送网络请求,更新题目信息,并且关闭当前页面
+    await questionStore.updateQuestionById(form)
+  } else {
+    //创建表单发送的网络请求
+    await questionStore.createQuestion(form)
+  }
 
   //关闭页面
   editIsShow.value = false
@@ -107,6 +121,18 @@ const confirmDelete = async () => {
   await questionStore.deleteQuestionById(quesId.value)
   emits('reFetchQuestionList')
   isShow.value = false
+}
+//取消删除
+const cancelDelete = () => {
+  isShow.value = false
+}
+
+//创建题目
+const createQuestion = () => {
+  //打开编辑菜单
+  editIsShow.value = true
+  //设置创建题目value为true，表示当前表单为创建题目
+  isCreate.value = true
 }
 </script>
 
@@ -145,7 +171,6 @@ const confirmDelete = async () => {
     </a-table>
 
     <!-- 展示编辑页面 -->
-
     <template v-if="editIsShow">
       <EditView
         :question-list="editQuestionList"
@@ -155,14 +180,20 @@ const confirmDelete = async () => {
     </template>
     <!-- 控制删除提示页面 -->
     <template v-if="isShow">
-      <a-alert closable banner center>
-        确定要删除吗
-        <template #action>
-          <a-button size="small" @click="confirmDelete" type="primary">确定</a-button>
-        </template>
-      </a-alert>
+      <div class="deleteAlert">
+        <a-alert banner center>
+          确定要删除吗
+          <template #action>
+            <a-button size="small" @click="confirmDelete" type="primary">确定</a-button>
+            <a-button size="small" @click="cancelDelete" type="primary">取消</a-button>
+          </template>
+        </a-alert>
+      </div>
     </template>
-    -->
+    <!-- 创建题目 -->
+    <div class="createQuestion">
+      <a-button type="primary" size="large" @click="createQuestion">创建题目</a-button>
+    </div>
   </div>
 </template>
 
@@ -178,5 +209,18 @@ const confirmDelete = async () => {
 }
 .edit {
   margin-left: 10px;
+}
+
+.deleteAlert {
+  position: absolute;
+
+  top: -170px;
+  left: 40%;
+  button {
+    margin-left: 10px;
+  }
+  .createQuestion {
+    position: absolute;
+  }
 }
 </style>

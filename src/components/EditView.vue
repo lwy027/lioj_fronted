@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
 import type { Question } from '../types/question'
+import { localCache } from '@/utils/catch'
+import { USERINFO } from '@/global/constant'
 
 const props = defineProps<{
   questionList: Question
@@ -8,7 +10,8 @@ const props = defineProps<{
 const emits = defineEmits(['submitEditInfo', 'cancelEdit'])
 
 const form = reactive<Question>({
-  id: props.questionList.id,
+  id: props?.questionList?.id,
+  userId: localCache.getCache(USERINFO).id,
   title: props.questionList.title,
   content: props.questionList.content,
   tags: props.questionList.tags,
@@ -49,7 +52,7 @@ const cancelHandle = () => {
             <a-form-item field="input" label="输入">
               <a-input v-model="item.input" />
             </a-form-item>
-            <a-form-item field="output" label="输入">
+            <a-form-item field="output" label="输出">
               <a-input v-model="item.output" />
             </a-form-item>
           </template>
@@ -62,6 +65,9 @@ const cancelHandle = () => {
           </a-form-item>
           <a-form-item field="output" label="内存限制">
             <a-input-number v-model="form.judgeConfig!.memoryLimit" />
+          </a-form-item>
+          <a-form-item field="output" label="栈限制">
+            <a-input-number v-model="form.judgeConfig!.stackLimit" />
           </a-form-item>
         </a-space>
       </a-form-item>
@@ -77,8 +83,8 @@ const cancelHandle = () => {
 .editView {
   width: 600px;
   padding: 20px;
-  position: absolute;
-  top: -20%;
+  position: fixed;
+  top: 10%;
   left: 30%;
   border-radius: 11px;
 
