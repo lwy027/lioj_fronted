@@ -23,7 +23,7 @@ import GlobelHader from './GlobleHeader.vue'
     margin-bottom: 7px;
   }
   .content {
-    background: linear-gradient(to right, rgb(197, 157, 25), #068c7c);
+    background: linear-gradient(to right, #fefefe, #fff);
   }
 
   .footer {

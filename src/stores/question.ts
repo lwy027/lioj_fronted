@@ -12,6 +12,7 @@ export const useQuestionStore = defineStore('question', () => {
     questions: [],
     totalCount: 0
   })
+
   //获取题目信息
   const fetchQuestionList = async (quesQuer: IQuestionQuery) => {
     const res = await getQuestionRequest(
@@ -55,11 +56,20 @@ export const useQuestionStore = defineStore('question', () => {
     }
   }
 
+  //通过id查询题目
+  const findQuestionById = async (questId: number) => {
+    const res = await getQuestionRequest(1, 1, questId)
+    if (res.code === 200) {
+      return res
+    }
+  }
+
   return {
     questionList,
     fetchQuestionList,
     updateQuestionById,
     deleteQuestionById,
-    createQuestion
+    createQuestion,
+    findQuestionById
   }
 })

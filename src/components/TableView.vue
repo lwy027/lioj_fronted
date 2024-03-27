@@ -83,14 +83,13 @@ const doQuestion = (id: number) => {
 //编辑题目,打开编辑表单
 const editHandler = (record: Question) => {
   editQuestionList = reactive(record)
+
   //展示组件
   editIsShow.value = true
 }
 
 //处理编辑/创建题目信息之后的操作
 const editInfoHandler = async (form: Question) => {
-  console.log(form)
-
   //当前是更新表单发送的网络请求
   if (!isCreate.value) {
     //发送网络请求,更新题目信息,并且关闭当前页面
@@ -110,6 +109,7 @@ const editInfoHandler = async (form: Question) => {
 //取消编辑
 const cancelEditHandle = () => {
   editIsShow.value = false
+  isCreate.value = false
 }
 
 //删除题目
@@ -129,6 +129,28 @@ const cancelDelete = () => {
 
 //创建题目
 const createQuestion = () => {
+  //清空传递给表单组件的数据
+  editQuestionList = reactive({
+    id: 0,
+    userId: 0,
+    title: '',
+    content: '',
+    tags: '',
+    answer: '',
+    judgeCase: [
+      {
+        input: '',
+        output: ''
+      }
+    ],
+    judgeConfig: {
+      //时间限制
+      timeLimit: 0,
+      //内存限制
+      memoryLimit: 0,
+      stackLimit: 0
+    }
+  })
   //打开编辑菜单
   editIsShow.value = true
   //设置创建题目value为true，表示当前表单为创建题目
@@ -176,6 +198,7 @@ const createQuestion = () => {
         :question-list="editQuestionList"
         @submit-edit-info="editInfoHandler"
         @cancel-edit="cancelEditHandle"
+        :is-create="isCreate"
       />
     </template>
     <!-- 控制删除提示页面 -->
@@ -219,8 +242,10 @@ const createQuestion = () => {
   button {
     margin-left: 10px;
   }
-  .createQuestion {
-    position: absolute;
-  }
+}
+.createQuestion {
+  position: absolute;
+  right: -100px;
+  top: -80px;
 }
 </style>

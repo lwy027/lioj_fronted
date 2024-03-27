@@ -9,7 +9,7 @@ const props = defineProps<{
 }>()
 const emits = defineEmits(['submitEditInfo', 'cancelEdit'])
 
-const form = reactive<Question>({
+let form = reactive<Question>({
   id: props?.questionList?.id,
   userId: localCache.getCache(USERINFO).id,
   title: props.questionList.title,

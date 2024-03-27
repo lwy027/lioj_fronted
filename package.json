@@ -14,7 +14,11 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@bytemd/plugin-gfm": "^1.21.0",
+    "@bytemd/plugin-highlight": "^1.21.0",
+    "@bytemd/vue-next": "^1.21.0",
     "axios": "^1.6.8",
+    "monaco-editor": "^0.47.0",
     "normalize.css": "^8.0.1",
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
@@ -40,6 +44,7 @@
     "unplugin-auto-import": "^0.17.5",
     "unplugin-vue-components": "^0.26.0",
     "vite": "^5.1.5",
+    "vite-plugin-monaco-editor": "^1.1.0",
     "vue-tsc": "^2.0.6"
   }
 }

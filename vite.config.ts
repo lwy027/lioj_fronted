@@ -20,6 +20,15 @@ export default defineConfig({
       ]
     })
   ],
+  optimizeDeps: {
+    include: [
+      'monaco-editor',
+      'monaco-editor/esm/vs/editor/editor.worker.js',
+      'monaco-editor/esm/vs/language/json/json.worker.js', // 如果需要 JSON 语言支持
+      'monaco-editor/esm/vs/language/typescript/ts.worker.js' // 如果需要 TypeScript 支持
+      // 添加其他语言的 worker，如 css、html 等
+    ]
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

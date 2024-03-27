@@ -29,8 +29,8 @@ export type judgeInfo = {
 }
 
 export interface Question {
-  id: number
-  userId: number
+  id?: number
+  userId?: number
   title: string
 
   content: string
@@ -69,4 +69,10 @@ export interface IQuestionQuery {
   id?: number
   title?: string
   tags?: string
+}
+
+export type QuestionSubmitAddRequest = {
+  code?: string
+  language?: string
+  questionId?: number
 }
